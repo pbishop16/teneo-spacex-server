@@ -5,9 +5,10 @@ const { request, gql } = require('graphql-request');
 require('dotenv').config();
 
 const app = express();
+const environment = process.env.NODE_ENV;
 const protocol = process.env.SERVER_PROTOCOL;
 const host = process.env.SERVER_HOST;
-const port = process.env.SERVER_PORT;
+const port = environment !== 'development' ? process.env.PORT : 6005;
 const client = process.env.CLIENT_ENDPOINT;
 
 app.use(morgan('combined'));
